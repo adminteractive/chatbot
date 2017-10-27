@@ -10,9 +10,12 @@ Installation
 
 npm install
 
+```
 
 Usage
 ------
 
 ```js
 node app.js
+
+```

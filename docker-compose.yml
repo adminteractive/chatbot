@@ -8,6 +8,8 @@ services:
       - webgateway
     volumes:
       - ./app:/usr/src/app
+    links:
+      - mysql:db
     ports:
       - "80"
     labels:
@@ -22,6 +24,8 @@ services:
     environment:
       PMA_USER: root
       PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    links:
+      - mysql:db
     labels:
       - "traefik.backend=phpmyadmin"
       - "traefik.frontend.rule=Host:pma.docker.localhost"

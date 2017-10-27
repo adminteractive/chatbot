@@ -1,0 +1,66 @@
+version: '3'
+
+services:
+  app:
+    build: ./services/app
+    hostname: app
+    networks:
+      - webgateway
+    volumes:
+      - ./app:/usr/src/app
+    links:
+      - mysql:db
+    ports:
+      - "80"
+    labels:
+      - "traefik.backend=app"
+      - "traefik.frontend.rule=Host:app.docker.localhost"
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    networks:
+      - webgateway
+    ports:
+      - "80"
+    environment:
+      PMA_USER: root
+      PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    links:
+      - mysql:db
+    labels:
+      - "traefik.backend=phpmyadmin"
+      - "traefik.frontend.rule=Host:pma.docker.localhost"
+  mysql:
+    build: ./services/mysql
+    hostname: mysql
+    networks:
+      - webgateway
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./app:/usr/src/app
+    ports:
+      - "3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    labels:
+      - "traefik.backend=db"
+  traefik:
+    image: traefik
+    command: --web --docker --docker.domain=docker.localhost --logLevel=DEBUG
+    networks:
+      - webgateway
+    ports:
+      - "8000:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /dev/null:/traefik.toml
+
+networks:
+  webgateway:
+    driver: bridge
+
+volumes:
+  mysql-data:

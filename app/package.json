@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/adminteractive/chatbot#readme",
   "dependencies": {
-    "botbuilder": "^3.11.0"
+    "botbuilder": "^3.11.0",
+    "botbuilder-teams": "^0.1.6",
+    "restify": "^6.2.3"
   }
 }

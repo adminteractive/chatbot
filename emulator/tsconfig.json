@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "importHelpers": true,
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "preserveConstEnums": true,
+        "target": "es6",
+        "jsx": "react",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "noImplicitThis": true,
+        "noEmitOnError": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "noUnusedLocals": true,
+        "outDir": "app",
+        "removeComments": true
+    },
+    "exclude": [
+        "node_modules",
+        "app",
+        "build",
+        "install"
+    ],
+    "compileOnSave": false
+}

@@ -1,6 +1,6 @@
-Bot Taivo - The Employee Happiness Manager
+Bot Toivo - The Employee Happiness Manager
 ===============================
-Taivo is a chatbot who acts as an Employee Happiness Manager
+Toivo is a chatbot who acts as an Employee Happiness Manager
 
 
 Setup

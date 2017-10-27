@@ -1,12 +1,12 @@
-Bot Taivo - The Happineess Manager
+Bot Taivo - The Employee Happiness Manager
 ===============================
-Chatbot taivo is a Employee Happiness Manage
+Taivo is a chatbot who acts as an Employee Happiness Manager
 
 
 Installation
 ------
 
-```js
+```bash
 
 npm install
 
@@ -15,7 +15,7 @@ npm install
 Usage
 ------
 
-```js
+```bash
 node app.js
 
 ```

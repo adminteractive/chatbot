@@ -55,4 +55,4 @@ var bot = new builder.UniversalBot(connector, function (session) {
   }
 });
 
-bot.dialog('abc_add', require('./tasks/abc/abc_add'));
+bot.dialog('abc_add', require('./dialogs/abc/abc_add'));

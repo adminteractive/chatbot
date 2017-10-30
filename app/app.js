@@ -21,7 +21,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 
 db.once('open', function() {
-  console.log("Connected to databas!");
+  console.log("Connected to database!");
 });
 
 server.use(restify.plugins.acceptParser(server.acceptable));
@@ -29,16 +29,30 @@ server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
 server.listen(3000, function(){
-  console.log("Toivo onlineasd at port 80");
+  console.log("Toivo onlineasd at port 3000");
 });
 
 var connector = new teams.TeamsChatConnector({
-    appId: '',
-    appPassword: ''
+  appId: '',
+  appPassword: ''
 });
 
 server.post('/api/messages', connector.listen());
 
+const triggers = {
+  'lisa abc': {
+    folder: 'abc',
+    file: 'abc_add',
+    permissions: 'owner'
+  }
+}
+
 var bot = new builder.UniversalBot(connector, function (session) {
-  session.send("Test");
+  if(typeof triggers[session.message.text] !== 'undefined'){
+    return session.beginDialog(triggers[session.message.text].file);
+  }else{
+    session.send('Ei eksisteeri');
+  }
 });
+
+bot.dialog('abc_add', require('./tasks/abc/abc_add'));

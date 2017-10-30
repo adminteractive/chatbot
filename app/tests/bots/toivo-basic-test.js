@@ -11,6 +11,8 @@ var bot = new toivo.Toivo(connector);
 
 bot.on('send', function (message) {
     assert(message.text == 'You said: Hello Toivo');
+    // flow can be checked here
+    // connector.processMessage('Hello Toivo');
 });
 
 connector.processMessage('Hello Toivo');

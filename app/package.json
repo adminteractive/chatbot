@@ -1,0 +1,29 @@
+{
+  "name": "toivo",
+  "version": "1.0.0",
+  "description": "Employee Happiness Builder",
+  "main": "app.js",
+  "scripts": {
+    "test": "toivo run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://ncmalitha@github.com/adminteractive/chatbot.git"
+  },
+  "keywords": [
+    "chatbot"
+  ],
+  "author": "ADM Interactive",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adminteractive/chatbot/issues"
+  },
+  "homepage": "https://github.com/adminteractive/chatbot#readme",
+  "dependencies": {
+    "botbuilder": "^3.11.0",
+    "botbuilder-teams": "^0.1.6",
+    "dotenv": "^4.0.0",
+    "mongoose": "^4.12.4",
+    "restify": "^6.2.3"
+  }
+}

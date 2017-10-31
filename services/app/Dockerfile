@@ -9,4 +9,8 @@ RUN apt-get update \
      vim \
   && rm -rf /var/lib/apt/lists/*
 
+RUN npm install -g nodemon
+
 WORKDIR /usr/src/app
+
+CMD ["/usr/local/bin/nodemon", "/usr/src/app/app.js"]

@@ -7,13 +7,16 @@ var toivo = require('../../bots/bot-toivo');
 
 var connector = new builder.ConsoleConnector();
 
-var bot = new toivo.Toivo(connector);
+var toivoInstance = new toivo.Toivo(connector);
 
-bot.on('send', function (message) {
-    assert(message.text == 'You said: Hello Toivo');
+let dialogs = require('../../dialogs/all-dialog-routes');
+toivoInstance.loadDialogs(dialogs);
+toivoInstance.bot.on('send', function (message) {
+    console.log(message);
+    // assert(message.text == 'You said: Hello Toivo');
     // flow can be checked here
     // connector.processMessage('Hello Toivo');
 });
 
-connector.processMessage('Hello Toivo');
+connector.processMessage('welcome');
 

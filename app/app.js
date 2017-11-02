@@ -1,8 +1,11 @@
+// Dependencies
 var builder = require('botbuilder'),
     restify = require('restify'),
     teams = require('botbuilder-teams'),
     mongoose = require('mongoose'),
     dotenv = require('dotenv').config();
+
+var dialogs = require('./dialogs');
 
 const server = restify.createServer({
   name: 'Bot Toivo',

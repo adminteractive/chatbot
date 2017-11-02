@@ -35,8 +35,8 @@ server.listen(port, function(){
 });
 
 var connector = new teams.TeamsChatConnector({
-  appId: '',
-  appPassword: ''
+  appId: process.env.MICROSOFT_BOT_APP_ID !== 'undefined' ? process.env.MICROSOFT_BOT_APP_ID : '',
+  appPassword: process.env.MICROSOFT_BOT_APP_ID !== 'undefined' ? process.env.MICROSOFT_BOT_APP_ID : '',
 });
 
 server.post('/api/messages', connector.listen());

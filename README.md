@@ -3,9 +3,11 @@ Bot Toivo - The Employee Happiness Manager
 Toivo is a chatbot who acts as an Employee Happiness Manager
 
 
-Setup
-------
-1. Copy .env file from template .env.sample
+# Environment
+
+## Docker setup
+
+1. Copy .env.sample to .env
 
 ```bash
 cp .env.sample .env
@@ -19,25 +21,49 @@ docker-compose up -d
 ```
 3. Access application under app.docker.localhost:8000
 
-Installation
-------
+## Navigating
 
+* To get inside application container
+```bash
+docker-compose exec --user node app bash -l
+```
+
+# Application
+
+## Environment
+
+In order to change application specific settings, like mongodb url.
+
+1. 
+
+```bash
+cd ./app
+
+```
+
+2. Copy .env.sample to .env
+
+```bash
+cp .env.sample .env
+
+```
+
+## Installation
+**If you are using docker, then the following instructions should be done inside app container. Check the docker part 
+part of the Readme for instructions**
 ```bash
 
 npm install
 
 ```
 
-Usage
-------
+## Usage
 
-```bash
-node app.js
+When using docker, the application server is automatically started and restarted with nodemon.
+The default server port is 80 but you can change it in .env file.
 
-```
+# Emulator
 
-Emulator
-------
 * For the standard way <a href="https://github.com/Microsoft/BotFramework-Emulator"> Follow the instructions here</a>
 
 OR

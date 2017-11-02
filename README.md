@@ -38,16 +38,4 @@ node app.js
 
 Emulator
 ------
-1. Install emulator dependencies+
-
-```bash
-npm i
-
-```
-2. Build and start emulator
-
-```bash
-npm run build && npm start
-
-```
-3. Change emulator's url if necessary
+* <a href="https://github.com/Microsoft/BotFramework-Emulator"> Check instructions here</a>

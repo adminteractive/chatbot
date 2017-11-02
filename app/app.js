@@ -14,11 +14,10 @@ const mongoOptions = {
   pass: process.env.MONGODB_PASSWORD
 };
 
-
 mongoose.connect(process.env.MONGODB_URL, mongoOptions);
 
 const db = mongoose.connection;
-
+// Server port
 const port = typeof process.env.APP_PORT !== 'undefined' ? process.env.APP_PORT : 80;
 
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -51,9 +50,10 @@ const triggers = {
 };
 
 var bot = new builder.UniversalBot(connector, function (session) {
-  if(typeof triggers[session.message.text] !== 'undefined'){
+  if (typeof triggers[session.message.text] !== 'undefined') {
     return session.beginDialog(triggers[session.message.text].file);
-  }else{
+  }
+  else {
     session.send('Ei eksisteeri');
   }
 });

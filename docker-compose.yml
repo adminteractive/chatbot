@@ -10,11 +10,20 @@ services:
       - ./app:/usr/src/app
     links:
       - mysql:db
+      - mongodb
     ports:
       - "0.0.0.0:9999:80"
     labels:
       - "traefik.backend=app"
       - "traefik.frontend.rule=Host:app.docker.localhost"
+  mongodb:
+    image: mongo:3.4.10
+    networks:
+      - webgateway
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27017"
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
     networks:
@@ -63,4 +72,5 @@ networks:
     driver: bridge
 
 volumes:
+  mongo-data:
   mysql-data:

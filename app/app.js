@@ -12,11 +12,14 @@ const server = restify.createServer({
 const mongoOptions = {
   user: process.env.MONGODB_USER,
   pass: process.env.MONGODB_PASSWORD
-}
+};
+
 
 mongoose.connect(process.env.MONGODB_URL, mongoOptions);
 
 const db = mongoose.connection;
+
+const port = typeof process.env.APP_PORT !== 'undefined' ? process.env.APP_PORT : 80;
 
 db.on('error', console.error.bind(console, 'connection error:'));
 
@@ -28,8 +31,8 @@ server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
 
-server.listen(3000, function(){
-  console.log("Toivo onlineasd at port 3000");
+server.listen(port, function(){
+  console.log("Toivo is online at port " + port);
 });
 
 var connector = new teams.TeamsChatConnector({
@@ -45,7 +48,7 @@ const triggers = {
     file: 'abc_add',
     permissions: 'owner'
   }
-}
+};
 
 var bot = new builder.UniversalBot(connector, function (session) {
   if(typeof triggers[session.message.text] !== 'undefined'){

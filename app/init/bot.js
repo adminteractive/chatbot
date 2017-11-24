@@ -1,6 +1,7 @@
 var fs = require('fs')
     teams = require('botbuilder-teams'),
     builder = require('botbuilder');
+
 module.exports = function (server) {
   var connector = new teams.TeamsChatConnector({
     appId: process.env.MICROSOFT_BOT_APP_ID !== 'undefined' ? process.env.MICROSOFT_BOT_APP_ID : '',
@@ -32,6 +33,10 @@ module.exports = function (server) {
       var options =  {
         name: dialog.name,
         permissions: dialog.permissions
+      }
+
+      if (typeof triggers[dialog.trigger] !== 'undefined') {
+        throw Error("Dialog trigger '" + dialog.trigger + "' already registered");
       }
 
       triggers[dialog.trigger] = options;

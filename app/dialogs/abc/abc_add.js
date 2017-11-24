@@ -1,4 +1,6 @@
-var builder = require('botbuilder');
+var builder = require('botbuilder'),
+    Abc = require('../../models/abc.js');
+
 
 module.exports = [
     // Destination
@@ -7,12 +9,25 @@ module.exports = [
     },
     function (session, results, next) {
         session.dialogData.destination = results.response;
-        session.send('Tänud, tuletan seda ADMile aeg ajalt meelde');
-        saveAbc(results.response);
-        next();
+        saveAbc(results.response, session.message.user.name, function (err) {
+            if (!err) {
+                session.send('Tänud, tuletan seda ADMile aeg ajalt meelde');
+            } else {
+                session.send('Tekkis viga andmete salvestamisega, proovi uuesti!');
+            }
+            next();
+        });
     },
 ];
 
-function saveAbc(result){
-  console.log(result);
+function saveAbc(result, user, callback) {
+    var abc = new Abc({
+        text: result,
+        addedBy: user,
+        timestamp: new Date()
+    })  
+
+    abc.save(function (err) {
+        callback(err);
+    })
 }

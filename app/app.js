@@ -36,7 +36,7 @@ server.listen(port, function(){
 
 var connector = new teams.TeamsChatConnector({
   appId: process.env.MICROSOFT_BOT_APP_ID !== 'undefined' ? process.env.MICROSOFT_BOT_APP_ID : '',
-  appPassword: process.env.MICROSOFT_BOT_APP_ID !== 'undefined' ? process.env.MICROSOFT_BOT_APP_ID : '',
+  appPassword: process.env.MICROSOFT_BOT_APP_SECRET !== 'undefined' ? process.env.MICROSOFT_BOT_APP_SECRET : '',
 });
 
 server.post('/api/messages', connector.listen());
@@ -45,6 +45,11 @@ const triggers = {
   'lisa abc': {
     folder: 'abc',
     file: 'abc_add',
+    permissions: 'owner'
+  },
+  'kustuta abc': {
+    folder: 'abc',
+    file: 'abc_delete',
     permissions: 'owner'
   }
 };
@@ -58,4 +63,5 @@ var bot = new builder.UniversalBot(connector, function (session) {
   }
 });
 
+bot.dialog('abc_delete', require('./dialogs/abc/abc_delete'));
 bot.dialog('abc_add', require('./dialogs/abc/abc_add'));

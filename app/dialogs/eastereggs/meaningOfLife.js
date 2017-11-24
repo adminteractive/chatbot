@@ -1,16 +1,11 @@
 var builder = require('botbuilder');
 
-var dialog = {
-  'id': 'meaningOfLife',
-  'flow': [
-    function (session) {
-      session.send('The meaning of life life is 4!');
-      builder.Prompts.confirm(session, 'Don\'t you agree ?');
-    },
-    function (session, results) {
-      console.log(results);
-    }
-  ]
-};
-
-module.exports = dialog;
+module.exports = {
+    name: "meaning_of_life",
+    dialogs: [
+        function (session, results, next) {
+            session.send('7');
+            next();
+        },
+    ],
+}

@@ -5,7 +5,9 @@ function saveAbc(result) {
 }  
 
 module.exports = {
-    name: "abc_dialog",
+    trigger: 'lisa abc',
+    permissions: 'owner',
+    name: "abc_add",
     dialogs: [
         function (session) {
             builder.Prompts.text(session, 'Mis sa tahad, et ma ADM-i abc-sse lisaksin?');
